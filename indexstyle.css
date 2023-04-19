@@ -37,13 +37,19 @@ footer dl dt img{
   height: 10%;
   width: 10%;
 }
-.nextplaytest a:link, a:visited { 
+.nextplaytest{ 
   text-align: center;
+  margin: auto;
+  padding: 10px;
+  color: #040507;
+  background-color: transparent;
+}
+.nextplaytest a:link, a:visited{
   color: #040507;
   background-color: transparent;
 }
 .nextplaytest a:hover { 
   text-align: center;
-  color: #171738;
+  color: #35356e;
   background-color: transparent;
 }
