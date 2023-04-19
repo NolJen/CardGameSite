@@ -33,6 +33,17 @@ html{
 body{
     background-color: #F4F4F6;
 }
-.nextplaytest a { 
+.nextplaytest a:link, a:visited { 
+    margin: auto;
     text-align: center;
+    padding: 10px;
+    color: #040507;
+    background-color: transparent;
+}
+.nextplaytest a:hover { 
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+    color: #171738;
+    background-color: transparent;
   }

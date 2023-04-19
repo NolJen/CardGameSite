@@ -34,6 +34,13 @@ body{
   background-color: #F4F4F6;
 }
 
-.nextplaytest a { 
+.nextplaytest a:link, a:visited { 
   text-align: center;
+  color: #040507;
+  background-color: transparent;
+}
+.nextplaytest a:hover { 
+  text-align: center;
+  color: #171738;
+  background-color: transparent;
 }
