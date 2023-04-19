@@ -37,6 +37,6 @@ footer dl dt img{
   height: 10%;
   width: 10%;
 }
-.nextplaytest{
+.nextplaytest a { 
   text-align: center;
 }

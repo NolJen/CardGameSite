@@ -33,6 +33,6 @@ html{
 body{
     background-color: #F4F4F6;
 }
-.nextplaytest{
+.nextplaytest a { 
     text-align: center;
-}
+  }
