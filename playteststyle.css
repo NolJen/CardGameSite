@@ -5,15 +5,15 @@
     text-align: center;
   }
     
-  /* Style the links inside the navigation bar */
-  .topnav a {
+/* Style the links inside the navigation bar */
+.topnav a {
     float: left;
     color: #040507;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-  }
+}
     
 /* Change the color of links on hover */
 .topnav a:hover {
@@ -27,25 +27,29 @@
     color: #E6E6E9;
 }
   
+/* Sets the backgound color to an off white */  
 html{
     background-color: #F4F4F6;
 }
+/* Sets the backgound color to an off white */  
 body{
     background-color: #F4F4F6;
 }
+/* sets the top banner to be center and a set color */
 .nextplaytest{ 
     text-align: center;
     margin: auto;
     padding: 10px;
     color: #040507;
     background-color: transparent;
-  }
-  .nextplaytest a:link, a:visited{
+}
+/* sets the banners default link color and visited link color */
+.nextplaytest a:link, a:visited{
     color: #040507;
     background-color: transparent;
-  }
-  .nextplaytest a:hover { 
-    text-align: center;
+}
+/* changes banner color when hovered over */
+.nextplaytest a:hover { 
     color: #35356e;
     background-color: transparent;
-  }
+}

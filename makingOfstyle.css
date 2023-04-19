@@ -27,13 +27,15 @@
   color: #E6E6E9;
 }
   
+/* Sets the backgound color to an off white */  
 html{
   background-color: #F4F4F6;
 }
+/* Sets the backgound color to an off white */  
 body{
   background-color: #F4F4F6;
 }
-
+/* sets the top banner to be center and a set color */
 .nextplaytest{ 
   text-align: center;
   margin: auto;
@@ -41,12 +43,13 @@ body{
   color: #040507;
   background-color: transparent;
 }
+/* sets the banners default link color and visited link color */
 .nextplaytest a:link, a:visited{
   color: #040507;
   background-color: transparent;
 }
+/* changes banner color when hovered over */
 .nextplaytest a:hover { 
-  text-align: center;
   color: #35356e;
   background-color: transparent;
 }
