@@ -53,3 +53,7 @@ body{
   color: #35356e;
   background-color: transparent;
 }
+img {
+  height: 50%;
+  width: 50%;
+}
