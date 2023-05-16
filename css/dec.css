@@ -9,3 +9,20 @@
     etc
 
 */
+
+html{
+    background-image: url(../images/cardsitetemp.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain; 
+    background-position: center;
+
+}
+@media screen and (max-width: 768px){
+    html {
+        background-image: url(../images/cardsitetemp.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    
+}
