@@ -6,7 +6,7 @@
 .navbar {
     position: fixed;
     left: 0px;
-    top: 0px;
+    top: 8vh;
     height: auto;
     width: 100%;
     background: #a1a1f2; /* behind the nav color */
