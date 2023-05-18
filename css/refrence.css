@@ -1,6 +1,16 @@
 .nextplaytest {
     position: fixed;
+    text-align: center;
+    left: 0vw;
+    width: 100vw;
+    height: auto;
+    background-color: #a1a1f2;
 }
+
+header h3 {
+    
+}
+
 
 /* Style for making the navigation menu */
 .navbar {
