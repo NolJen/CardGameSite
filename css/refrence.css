@@ -1,10 +1,14 @@
+body{
+    background-color: #F4F4F6;
+}
+
 .nextplaytest {
     position: fixed;
     text-align: center;
     left: 0vw;
     width: 100vw;
     height: auto;
-    background-color: #a1a1f2;
+    background-color: #E6E6E9;
 }
 
 header h3 {
@@ -19,7 +23,7 @@ header h3 {
     top: 8vh;
     height: auto;
     width: 100%;
-    background: #a1a1f2; /* behind the nav color */
+    background: #E6E6E9; /* behind the nav color */
 }
           
 .navbar ul {
@@ -47,12 +51,12 @@ header h3 {
 }
   
 .navbar ul li.active {
-    background: #fff; /* Nav bar color */
+    background: #F4F4F6; /* Nav bar color */
 }
   
 .navbar ul li a {
     text-decoration: none;
-    color: #fff; /* text of other pages */
+    color: #333; /* text of other pages */
 }
   
 .navbar ul li.active a {
@@ -67,9 +71,9 @@ li.active a::before {
     height: 30px;
     width: 30px;
     position: absolute;
-    background: #a1a1f2; /* cicle*/
+    background: #E6E6E9; /* cicle*/
     border-radius: 50%;
-    box-shadow: 15px 15px 0 #fff; /* below cicle*/
+    box-shadow: 15px 15px 0 #F4F4F6; /* below cicle*/
 }
 
 li.active a::after {
@@ -79,7 +83,7 @@ li.active a::after {
     height: 30px;
     width: 30px;
     position: absolute;
-    background: #a1a1f2; /* cicle*/
+    background: #E6E6E9; /* cicle*/
     border-radius: 50%;
-    box-shadow: -15px 15px 0 #fff; /* below cicle*/
+    box-shadow: -15px 15px 0 #F4F4F6; /* below cicle*/
 }
