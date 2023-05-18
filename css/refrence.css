@@ -6,9 +6,7 @@ body{
 header {
     display: flex;
     flex-direction: row;
-    /*border: dashed;
-    border-color: red;
-    border-width: 3px;*/
+    
 }
 
 .nextplaytest {
@@ -19,7 +17,11 @@ header {
     left: 0vw;
     width: 100vw;
     height: auto;
-    background-color: #a1a1f2;
+    background: #E6E6E9;
+    border: dashed;
+    border-color: red;
+    border-width: 3px;
+
 }
 
 header div {
@@ -31,10 +33,13 @@ header div {
 .navbar {
     position: fixed;
     left: 0px;
-    top: 8vh;
+    top: 6vh;
     height: auto;
     width: 100%;
     background: #E6E6E9; /* behind the nav color */
+    border: dashed;
+    border-color: red;
+    border-width: 3px;
 }
           
 .navbar ul {
