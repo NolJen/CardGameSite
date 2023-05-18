@@ -1,0 +1,75 @@
+.nextplaytest {
+    position: fixed;
+}
+
+/* Style for making the navigation menu */
+.navbar {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: auto;
+    width: 100%;
+    background: #a1a1f2; /* behind the nav color */
+}
+          
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    margin-bottom: 0px;
+    padding-left: 40px;       
+}
+          
+.navbar ul li {
+    display: inline;        
+    list-style: none;     
+    padding-left: 30px;        
+    padding-right: 30px;
+    padding-top: 10px;         
+    padding-bottom: 10px;        
+    font-size: 1rem;       
+    border-radius: 20px 20px 0px 0px;        
+    position: relative;
+}
+  
+.navbar ul li.active {
+    background: #fff; /* Nav bar color */
+}
+  
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff; /* text of other pages */
+}
+  
+.navbar ul li.active a {
+    color: #333; /* current page text */
+}
+
+/*The Circles with box-shadow*/
+li.active a::before {
+    content: "";
+    left: -30px;
+    bottom: 0;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    background: #a1a1f2; /* cicle*/
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 #fff; /* below cicle*/
+}
+
+li.active a::after {
+    content: "";
+    right: -30px;
+    bottom: 0;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    background: #a1a1f2; /* cicle*/
+    border-radius: 50%;
+    box-shadow: -15px 15px 0 #fff; /* below cicle*/
+}
