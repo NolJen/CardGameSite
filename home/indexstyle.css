@@ -105,6 +105,9 @@ li.active a::after {
 
 .container .banner {
   padding-top: 120px;
+  display: block;
+  margin-left: auto;  
+  margin-right: auto;
 } 
 
 .container {
