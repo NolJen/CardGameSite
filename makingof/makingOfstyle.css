@@ -98,7 +98,13 @@ li.active a::after {
   border-radius: 50%;
   box-shadow: -15px 6px 0px -4px #F4F4F6; /* below cicle*/
 }
+
 img {
   height: 50%;
   width: 50%;
+}
+
+.container {
+  padding: 75px;
+  margin-top: 35px;
 }
