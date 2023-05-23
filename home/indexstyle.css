@@ -6,7 +6,6 @@ body{
 header {
   display: flex;
   flex-direction: row;
-  
 }
 
 .nextplaytest {
@@ -104,14 +103,20 @@ li.active a::after {
 }
 
 .container .banner {
-  padding-top: 120px;
+  padding-top: 70px;
   display: block;
   margin-left: auto;  
   margin-right: auto;
+  height: auto;
+  width: auto;
 } 
 
 .container {
   padding: 18px;
   margin-top: 35px;
-  height: 2000px;
+}
+
+.imglink {
+  height: 30px;
+  width: 30px;
 }
