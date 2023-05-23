@@ -19,6 +19,7 @@ header {
   background: #E6E6E9;
   display: block;
   overflow: hidden;
+  color: #333;
 
 }
 
@@ -32,6 +33,7 @@ header div {
   position: fixed;
   left: 0px;
   top: 6vh;
+  margin: auto;
   height: auto;
   width: 100%;
   float: left;
@@ -117,6 +119,6 @@ li.active a::after {
 }
 
 .imglink {
-  height: 30px;
-  width: 30px;
+  height: 5%;
+  width: 5%;
 }
