@@ -18,9 +18,6 @@ header {
     width: 100vw;
     height: auto;
     background: #E6E6E9;
-    border: dashed;
-    border-color: red;
-    border-width: 3px;
 
 }
 
@@ -37,9 +34,6 @@ header div {
     height: auto;
     width: 100%;
     background: #E6E6E9; /* behind the nav color */
-    border: dashed;
-    border-color: red;
-    border-width: 3px;
 }
           
 .navbar ul {

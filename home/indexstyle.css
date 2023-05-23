@@ -1,60 +1,99 @@
-/* Add a black background color to the top navigation */
-.topnav {
-  background-color: #748CAB;
-  overflow: hidden;
-  text-align: center;
-}
-  
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #040507;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-  
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #242449;
-  color: #E6E6E9;
-}
-  
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #171738;
-  color: #E6E6E9;
-}
-
-
-footer dl dt img{
-  height: 10%;
-  width: 10%;
-}
-/* Sets the backgound color to an off white */  
-html{
-  background-color: #F4F4F6;
-}
-/* Sets the backgound color to an off white */  
 body{
   background-color: #F4F4F6;
 }
-/* sets the top banner to be center and a set color */
-.nextplaytest{ 
+
+
+header {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.nextplaytest {
+  flex: 50%;
+  position: fixed;
   text-align: center;
-  margin: auto;
-  padding: 10px;
-  color: #040507;
-  background-color: transparent;
+  top: 0;
+  left: 0vw;
+  width: 100vw;
+  height: auto;
+  background: #E6E6E9;
+
 }
-/* sets the banners default link color and visited link color */
-.nextplaytest a:link, a:visited{
-  color: #040507;
-  background-color: transparent;
+
+header div {
+  flex: 50%
 }
-/* changes banner color when hovered over */
-.nextplaytest a:hover { 
-  color: #35356e;
-  background-color: transparent;
+
+
+/* Style for making the navigation menu */
+.navbar {
+  position: fixed;
+  left: 0px;
+  top: 6vh;
+  height: auto;
+  width: 100%;
+  background: #E6E6E9; /* behind the nav color */
+}
+        
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+  margin-bottom: 0px;
+  padding-left: 40px;       
+}
+        
+.navbar ul li {
+  display: inline;        
+  list-style: none;     
+  padding-left: 30px;        
+  padding-right: 30px;
+  padding-top: 10px;         
+  padding-bottom: 10px;        
+  font-size: 1rem;       
+  border-radius: 20px 20px 0px 0px;        
+  position: relative;
+}
+
+.navbar ul li.active {
+  background: #F4F4F6; /* Nav bar color */
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #333; /* text of other pages */
+}
+
+.navbar ul li.active a {
+  color: #333; /* current page text */
+}
+
+/*The Circles with box-shadow*/
+li.active a::before {
+  content: "";
+  left: -30px;
+  bottom: 0;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  background: #E6E6E9; /* cicle*/
+  border-radius: 50%;
+  box-shadow: 15px 15px 0 #F4F4F6; /* below cicle*/
+}
+
+li.active a::after {
+  content: "";
+  right: -30px;
+  bottom: 0;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  background: #E6E6E9; /* cicle*/
+  border-radius: 50%;
+  box-shadow: -15px 15px 0 #F4F4F6; /* below cicle*/
 }
