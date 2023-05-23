@@ -18,6 +18,8 @@ header {
   width: 100vw;
   height: auto;
   background: #E6E6E9;
+  display: block;
+  overflow: hidden;
 
 }
 
@@ -33,6 +35,9 @@ header div {
   top: 6vh;
   height: auto;
   width: 100%;
+  float: left;
+  display: block;
+  overflow: hidden;
   background: #E6E6E9; /* behind the nav color */
 }
         
@@ -96,4 +101,14 @@ li.active a::after {
   background: #E6E6E9; /* cicle*/
   border-radius: 50%;
   box-shadow: -15px 15px 0 #F4F4F6; /* below cicle*/
+}
+
+.container .banner {
+  padding-top: 120px;
+} 
+
+.container {
+  padding: 18px;
+  margin-top: 35px;
+  height: 2000px;
 }

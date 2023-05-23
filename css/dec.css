@@ -1,14 +1,102 @@
-/* Main decorator file for the main page */
+body{
+    background-color: #F4F4F6;
+}
 
-/* Things to style, 
 
-    main page, 
-    header, 
-    footer,
-    nav bar, 
-    etc
+header {
+    display: flex;
+    flex-direction: row;
+    
+}
 
-*/
+.nextplaytest {
+    flex: 50%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: 0vw;
+    width: 100vw;
+    height: auto;
+    background: #E6E6E9;
+
+}
+
+header div {
+    flex: 50%
+}
+
+
+/* Style for making the navigation menu */
+.navbar {
+    position: fixed;
+    left: 0px;
+    top: 6vh;
+    height: auto;
+    width: 100%;
+    background: #E6E6E9; /* behind the nav color */
+}
+          
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    margin-bottom: 0px;
+    padding-left: 40px;       
+}
+          
+.navbar ul li {
+    display: inline;        
+    list-style: none;     
+    padding-left: 30px;        
+    padding-right: 30px;
+    padding-top: 10px;         
+    padding-bottom: 10px;        
+    font-size: 1rem;       
+    border-radius: 20px 20px 0px 0px;        
+    position: relative;
+}
+  
+.navbar ul li.active {
+    background: #F4F4F6; /* Nav bar color */
+}
+  
+.navbar ul li a {
+    text-decoration: none;
+    color: #333; /* text of other pages */
+}
+  
+.navbar ul li.active a {
+    color: #333; /* current page text */
+}
+
+/*The Circles with box-shadow*/
+li.active a::before {
+    content: "";
+    left: -30px;
+    bottom: 0;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    background: #E6E6E9; /* cicle*/
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 #F4F4F6; /* below cicle*/
+}
+
+li.active a::after {
+    content: "";
+    right: -30px;
+    bottom: 0;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    background: #E6E6E9; /* cicle*/
+    border-radius: 50%;
+    box-shadow: -15px 15px 0 #F4F4F6; /* below cicle*/
+}
 
 html{
     background-image: url(../images/cardsitetemp.png);
