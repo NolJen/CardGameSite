@@ -6,7 +6,6 @@ body{
 header {
   display: flex;
   flex-direction: row;
-  
 }
 
 .nextplaytest {
@@ -18,6 +17,9 @@ header {
   width: 100vw;
   height: auto;
   background: #E6E6E9;
+  display: block;
+  overflow: hidden;
+  color: #333;
 
 }
 
@@ -31,8 +33,12 @@ header div {
   position: fixed;
   left: 0px;
   top: 6vh;
+  margin: auto;
   height: auto;
   width: 100%;
+  float: left;
+  display: block;
+  overflow: hidden;
   background: #E6E6E9; /* behind the nav color */
 }
         
@@ -97,3 +103,46 @@ li.active a::after {
   border-radius: 50%;
   box-shadow: -15px 15px 0 #F4F4F6; /* below cicle*/
 }
+
+.container .banner {
+  padding-top: 70px;
+  display: block;
+  margin-left: auto;  
+  margin-right: auto;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  border-radius: 1.5%;
+}
+
+
+.container {
+  padding: 18px;
+  margin-top: 35px;
+}
+
+.imglink {
+  height: 5%;
+  width: 5%;
+}
+
+@font-face {
+  font-family: 'tankerregular';
+  src: url('tanker-regular-webfont.woff2') format('woff2'),
+       url('tanker-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+h2 { 
+  color: #333;
+  font-family: 'tankerregular', Helvetica, sans-serif;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  color: #333;
+}
+
