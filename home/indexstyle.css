@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'Tanker';
+  src: url('../FONTS/tanker-regular-webfont.woff2') format('woff2'),
+       url('../FONTS/tanker-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'WorkSans';
+  src: url('../FONTS/worksans-medium-webfont.woff2') format('woff2'),
+       url('../FONTS/worksans-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body{
   background-color: #F4F4F6;
 }
@@ -9,6 +24,7 @@ header {
 }
 
 .nextplaytest {
+  font-family: 'WorkSans';
   flex: 50%;
   position: fixed;
   text-align: center;
@@ -30,6 +46,7 @@ header div {
 
 /* Style for making the navigation menu */
 .navbar {
+  font-family: 'Tanker';
   position: fixed;
   left: 0px;
   top: 6vh;
@@ -43,6 +60,7 @@ header div {
 }
         
 .navbar ul {
+  
   display: flex;
   list-style-type: none;
   margin-block-start: 1em;
@@ -126,23 +144,17 @@ li.active a::after {
   width: 5%;
 }
 
-@font-face {
-  font-family: 'tankerregular';
-  src: url('tanker-regular-webfont.woff2') format('woff2'),
-       url('tanker-regular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
 
 h2 { 
   color: #333;
-  font-family: 'tankerregular', Helvetica, sans-serif;
+  font-size: 20px;
+  font-family: 'WorkSans';
   text-align: center;
 }
 
 .footer {
   text-align: center;
+  font-family: 'WorkSans';
   color: #333;
 }
 

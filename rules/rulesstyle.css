@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Tanker';
+    src: url('../FONTS/tanker-regular-webfont.woff2') format('woff2'),
+         url('../FONTS/tanker-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'WorkSans';
+    src: url('../FONTS/worksans-medium-webfont.woff2') format('woff2'),
+         url('../FONTS/worksans-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 body{
     background-color: #F4F4F6;
 }
@@ -10,6 +25,7 @@ header {
 }
 
 .nextplaytest {
+    font-family: 'WorkSans';
     flex: 50%;
     position: fixed;
     text-align: center;
@@ -29,6 +45,7 @@ header div {
 
 /* Style for making the navigation menu */
 .navbar {
+    font-family: 'Tanker';
     position: fixed;
     left: 0px;
     top: 6vh;
@@ -102,4 +119,12 @@ li.active a::after {
 .container {
     padding: 75px;
     margin-top: 35px;
-  }
+}
+
+.titleOfStuff {
+    font-family: 'Tanker';
+}
+
+.smallertext {
+    font-family: 'WorkSans';
+}
