@@ -111,8 +111,10 @@ li.active a::after {
   margin-right: auto;
   height: auto;
   width: auto;
+  max-width: 100%;
   border-radius: 1.5%;
-} 
+}
+
 
 .container {
   padding: 18px;
@@ -122,4 +124,14 @@ li.active a::after {
 .imglink {
   height: 5%;
   width: 5%;
+}
+
+h2 { 
+  color: #333;
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  color: #333;
 }
