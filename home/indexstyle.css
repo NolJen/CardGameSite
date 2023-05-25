@@ -111,6 +111,7 @@ li.active a::after {
   margin-right: auto;
   height: auto;
   width: auto;
+  border-radius: 1.5%;
 } 
 
 .container {
