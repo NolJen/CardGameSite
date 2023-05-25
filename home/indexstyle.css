@@ -126,8 +126,18 @@ li.active a::after {
   width: 5%;
 }
 
+@font-face {
+  font-family: 'tankerregular';
+  src: url('tanker-regular-webfont.woff2') format('woff2'),
+       url('tanker-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 h2 { 
   color: #333;
+  font-family: 'tankerregular', Helvetica, sans-serif;
   text-align: center;
 }
 
@@ -135,3 +145,4 @@ h2 {
   text-align: center;
   color: #333;
 }
+
