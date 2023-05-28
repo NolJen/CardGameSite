@@ -28,7 +28,7 @@ const GGlCal_KEY = "AIzaSyA5fjHr2agoW93queC4T9jUYg1ay0FzP7o";
 var gameGen = 0;
 const PORTID = 3000;
 
-
+//Hello world request
 app.get('/', (req, res) => {
     res.send('Ready to receive game start');
     console.log(`Game Ready to be Initialized`);
