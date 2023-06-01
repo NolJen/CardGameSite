@@ -19,11 +19,19 @@
 const request = require("request");
 const express = require('express');
 
+// Methods
 const app = express();
 
+//API Keys
 const GPT_KEY = "";
 const Deck_KEY = "";
 const GGlCal_KEY = "AIzaSyA5fjHr2agoW93queC4T9jUYg1ay0FzP7o";
+
+//URL's
+const newndeck = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3";
+
+//vars
+
 
 var gameGen = 0;
 const PORTID = 3000;
@@ -40,8 +48,42 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
 
     let charid = req.params.charid;
     let botNum = req.params.botNum;
+    let deck = "";
     
-    // Call deck of cards API, initialize a deck or two
+    // Call deck of cards API, initialize a deck or two (three decks)
+    request(newdeck, (error, response, body) => {
+
+        request(url, (error, response, body)=>{
+		
+            if(error) console.log(error)
+            console.log(response.statusCode);
+            
+            let data = JSON.parse(body);
+            deck = data.deckid;
+            console.log(`Deck 1 has been generated with deck id: ${deck}`)
+        });
+    });
+
+    var cards = [];
+
+    // initial draw!
+    for(let i = 0; i < nBots+1; i++) {
+        cards[i] = [];
+        let draw = `https://deckofcardsapi.com/api/deck/${deck}/draw/?count=3`;
+        request(draw, (error, response, body)=>{
+
+            if(error) console.log(error)
+            console.log(response.statusCode);
+            
+            let data = JSON.parse(body);
+            for(let x in data.cards){
+                cards[x].push(x.code);
+            }
+
+        });
+    };
+
+
 
     // Create Bots
 
