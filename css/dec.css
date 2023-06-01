@@ -144,8 +144,14 @@ html{
 }
 
 .dropdown {
-    padding-top: 100px;
+    padding-top: 130px;
     font-family: 'WorkSans';
     text-align: center;
+    color: #E6E6E9;
+    background-color: #35366E;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 1.5%;
 
 }
