@@ -133,4 +133,18 @@ html{
     
 }
 
+.tanker {
+    font-family: 'Tanker';
 
+}
+
+.worksans {
+    font-family: 'WorkSans';
+}
+
+.dropdown {
+    padding-top: 100px;
+    font-family: 'WorkSans';
+    text-align: center;
+
+}
