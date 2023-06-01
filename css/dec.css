@@ -116,6 +116,7 @@ li.active a::after {
     box-shadow: -15px 6px 0px -4px #F4F4F6; /* below cicle*/
 }
 
+/*
 html{
     background-image: url(../images/cardsitetemp.png);
     background-repeat: no-repeat;
@@ -131,6 +132,26 @@ html{
         background-size: 100% 100%;
     }
     
+} */
+
+.tanker {
+    font-family: 'Tanker';
+
 }
 
+.worksans {
+    font-family: 'WorkSans';
+}
 
+.dropdown {
+    padding-top: 130px;
+    font-family: 'WorkSans';
+    text-align: center;
+    color: #E6E6E9;
+    background-color: #35366E;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 1.5%;
+
+}
