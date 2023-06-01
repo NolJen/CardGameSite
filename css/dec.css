@@ -116,6 +116,7 @@ li.active a::after {
     box-shadow: -15px 6px 0px -4px #F4F4F6; /* below cicle*/
 }
 
+/*
 html{
     background-image: url(../images/cardsitetemp.png);
     background-repeat: no-repeat;
@@ -131,7 +132,7 @@ html{
         background-size: 100% 100%;
     }
     
-}
+} */
 
 .tanker {
     font-family: 'Tanker';
