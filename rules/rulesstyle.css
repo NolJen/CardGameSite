@@ -117,8 +117,17 @@ li.active a::after {
 }
 
 .container {
-    padding: 75px;
+    padding-top: 75px;
     margin-top: 35px;
+    text-align: center;
+}
+
+img {
+    height: auto;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
 }
 
 .titleOfStuff {
