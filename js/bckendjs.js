@@ -30,10 +30,12 @@ const GGlCal_KEY = "AIzaSyA5fjHr2agoW93queC4T9jUYg1ay0FzP7o";
 //URL's
 const newndeck = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3";
 
+
 //vars
+let character_models = ['penguin', ]; // fill this in here
 
-
-var gameGen = 0;
+var gameID = 0;
+var gameData = [];
 const PORTID = 3000;
 
 //Hello world request
@@ -48,20 +50,17 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
 
     let charid = req.params.charid;
     let botNum = req.params.botNum;
+    let botModels = [];
     let deck = "";
     
     // Call deck of cards API, initialize a deck or two (three decks)
     request(newdeck, (error, response, body) => {
-
-        request(url, (error, response, body)=>{
-		
-            if(error) console.log(error)
-            console.log(response.statusCode);
-            
-            let data = JSON.parse(body);
-            deck = data.deckid;
-            console.log(`Deck 1 has been generated with deck id: ${deck}`)
-        });
+        if(error) console.log(error)
+        console.log(response.statusCode);
+        
+        let data = JSON.parse(body);
+        deck = data.deckid;
+        console.log(`Deck 1 has been generated with deck id: ${deck}`)
     });
 
     var cards = [];
@@ -77,26 +76,62 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
             
             let data = JSON.parse(body);
             for(let x in data.cards){
-                cards[x].push(x.code);
+                cards[i].push(x.code);
             }
 
         });
     };
 
 
+    B = [charid];
+    //This code line was taken from stack overflow: https://stackoverflow.com/questions/45342155/how-to-subtract-one-array-from-another-element-wise-in-javascript
+    temp  = character_models.filter(n => !B.includes(n));
+    // this code line was taken from Dev.to: https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj#:~:text=The%20first%20and%20simplest%20way,)%20%3D%3E%200.5%20%2D%20Math.
+    temp2 = temp.sort((a, b) => 0.5 - Math.random());
+    for(let i = 0; i < nBots; i++){
+        botModels[i] = temp2[i];
+    }
 
-    // Create Bots
-
-    // Decide turn order
-
+    gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, discard: discard_pile});
+    gameID = gameData.length-1;
     
-    retString = JSON.stringify({ gameid : gameGen += 1, handid : playerPile})
+    retString = JSON.stringify({ gameid : gameID, gameInfo: JSON.parse(gameData[gameID])});
 
-    res.send(retString)
-    console.log(retString)
+    res.send(retString);
+    console.log(retString);
 });
 
-app.get('/play_card/:handid/:cardid/:deckid', (req, res) => {
+app.get('/draw_card/:gameid/:num_draw', (req, res) => {
+
+    gameID = req.params.gameid;
+    numDraw = req.params.num_draw;
+    
+    let data = JSON.parse(gameData[gameID]);
+
+    const drawcard = `https://deckofcardsapi.com/api/deck/${data.deckid}/draw/?count=${numDraw}`;
+
+    request(drawcard, (error, response, body) => {
+
+        if(error) console.log(error)
+        console.log(response.statusCode);
+        
+        let newcards = JSON.parse(body);
+        for(let x in newcards.cards){
+            data.cards[0].push(x.code);
+        }
+
+    });
+
+    gameData[gameID] = JSON.stringify(data);
+    res.send(gameData[gameID]);
+    console.log(gameData[gameID]);
+});
+
+app.get('/vetos_in_game/:gameid', (req,res) => {
+
+});
+
+app.get('/play_card/:gameid/:cardid', (req, res) => {
 
     // add card to discard pile
 
