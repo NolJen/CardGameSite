@@ -155,3 +155,47 @@ html{
     border-radius: 1.5%;
 
 }
+
+
+/* from the youtube refrence */
+
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0rem;
+    overflow: hidden;
+}
+  
+#image-track {
+    padding-top: 500px;
+    display: flex;
+    gap: 4vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(0%, -50%); 
+    user-select: none; /* -- Prevent image highlighting -- */
+}
+  
+#image-track > .image {
+    border-radius: 5%;
+    border: 5px solid #333;
+    width: 40vmin;
+    height: 56vmin;
+    max-width: 50%;
+    min-width: auto;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: 100% center;
+}
+  
+/* -- YouTube Link Styles -- */
+  
+body.menu-toggled > .meta-link > span {
+    color: rgb(30, 30, 30);
+}
+
+.Card_Hand {
+    padding-top: 1000px;
+}
