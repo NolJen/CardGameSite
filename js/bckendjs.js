@@ -92,7 +92,7 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
         botModels[i] = temp2[i];
     }
 
-    gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, discard: discard_pile});
+    gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, treaties: treaty_pile, discard: discard_pile});
     gameID = gameData.length-1;
     
     retString = JSON.stringify({ gameid : gameID, gameInfo: JSON.parse(gameData[gameID])});
@@ -104,7 +104,7 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
 app.get('/draw_card/:gameid/:num_draw', (req, res) => {
 
     gameID = req.params.gameid;
-    numDraw = req.params.num_draw;
+    let numDraw = req.params.num_draw;
     
     let data = JSON.parse(gameData[gameID]);
 
@@ -128,16 +128,59 @@ app.get('/draw_card/:gameid/:num_draw', (req, res) => {
 });
 
 app.get('/vetos_in_game/:gameid', (req,res) => {
+    // is sent a game id, and returns a boolean and what hands have a veto card to play if any. 
+    gameID = Number(req.params.gameid);
+    let bool = false;
+    let hands = [];
 
+    let data = JSON.parse(gameData[gameID]);
+
+    for(let x in data.cards){
+        for(y in x){
+            if(y.includes("J") || y.includes("Q") || y.includes("K")){
+                hands.push[data.cards.indexOf(x)]
+                bool = true;
+            }
+            break;
+        }
+    };
+    retVal = JSON.stringify({isVeto: bool, handIndex: hands});
+    res.send(retVal);
+    console.log(retVal);
 });
 
-app.get('/play_card/:gameid/:cardid', (req, res) => {
 
-    // add card to discard pile
+app.get('/play_card/:gameid/:playerid/:cardid', (req, res) => {
 
-    // enforce card effect 
+    // get relevant info
+    gameID = Number(req.params.gameid);
+    let idx = Number(req.params.playerid);
+    let cardCode = String(req.params.cardid);
 
-    // queue bots turns or play another card
+    // add card to discard pile if action or veto, add to treaty pile if treaty
+    let data = JSON.parse(gameData[gameID]);
+
+
+    treaty = ["A", "2", "3", "4", "5"];
+    action = ["6", "7", "8", "9", "0"];
+    if(treaty.includes(cardCode.charAt(0))){
+        // treaty protocol
+    }else if(ection.includes(cardCode.charAt(0))){
+        // action protocol
+    }else{
+        // veto protocol
+    }
+});
+
+app.get('/bots_turn/:gameid/:botid/:success', (req, res) => {
+
+    // draw
+
+    // play cards
+
+    // generate dialogue
+
+    // end turn
 
 });
 

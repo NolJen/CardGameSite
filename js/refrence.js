@@ -3,6 +3,8 @@
 function gamestart(charID, nBots){
 
     let hand = [];
+    var gameID = 0;
+    data = [];
     var charID = hey; // This should be updated before the new game call
     var eligible_players = nBots+1;
     var turn_order = 1;
@@ -16,13 +18,13 @@ function gamestart(charID, nBots){
 
 
     var xReq = new XMLHttpRequest();
-    xReq.open("GET", `${SERURL}`);
+    xReq.open("GET", `${SERURL}/start_game/${charID}/${nBots}`);
     xReq.send();
     xReq.onload = function() {
         const body = JSON.parse(xReq.responseText);
 
-        const gameID = body.gameID;
-        const data = body.gameInfo;
+        gameID = body.gameID;
+        data = body.gameInfo;
         
 
         // Some code here that starts the game animation / game screen 
@@ -35,6 +37,11 @@ function gamestart(charID, nBots){
         if(counter == 0){
             // draw call to players hand
             // let player pick cards to play
+            let i = actions;
+            while(i > 0){
+
+            }
+
         } else {
             // draw 
             // call backend to play bots turn
@@ -42,6 +49,12 @@ function gamestart(charID, nBots){
         }
 
         // Veto Phase
+
+        xReq.open("GET", `${SERURL}/vetos_in_game/${gameID}`);
+        xReq.send();
+        xReq.onload = function() {
+            let temp = JSON.parse(xReq.responseText)
+        }
 
             // all players can play a veto card
             // check if players have a veto, if bot use a random number,  
@@ -52,7 +65,6 @@ function gamestart(charID, nBots){
         // results phase
 
             // eligible players might change
-
 
         // game mod phase
 
