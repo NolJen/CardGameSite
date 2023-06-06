@@ -1,11 +1,13 @@
 
 
-function gamestart(charID, nBots){
+function gameStart(){
+
+    const nBots = document.getElementById("num_opponents").selectedValue[0].value;
+    const charID = document.getElementById("character_select").selectedValue[0].value;
 
     let hand = [];
     var gameID = 0;
     data = [];
-    var charID = hey; // This should be updated before the new game call
     var eligible_players = nBots+1;
     var turn_order = 1;
     var playerElim = false;
@@ -13,8 +15,8 @@ function gamestart(charID, nBots){
     var numDraw = 1;
     var activeTreaties = [];
     var ActionPool = [["Draw 1 Card", 1], ["Draw 3 Cards", 2], ["Discard 1 Card", 3], ["Discard 2 Cards to Draw 3 Cards", 4], ["Each Player Draws 1 Card", 5], ["Each Player Discards 1 Card", 6]];
-    var TreatyPool = [["Draw 1 Additional Card Per Turn", 1], ["You Can Not Go Over 6 Cards, You Can’t Speak", 2], ["At The Start of Your Turn You Must Say The Player To Your Rights Name", 3], ["You Can Not Play The Same Type Of Card Twice In a Row", 4], ["You Must Play 2 Cards Per Turn", 5]];
-    var SERURL = ''; // This should call the new game function with a selected character already chosen!
+    var TreatyPool = [["Draw 1 Additional Card Per Turn", 1], ["You Can Not Go Over 6 Cards", 2], ["You Can’t Speak", 3], ["At The Start of Your Turn You Must Say The Player To Your Rights Name", 4], ["You Can Not Play The Same Type Of Card Twice In a Row", 5], ["You Must Play 2 Cards Per Turn", 6]];
+    var SERURL = 'localhost:3000'; // This should call the new game function with a selected character already chosen!
 
 
     var xReq = new XMLHttpRequest();
@@ -78,6 +80,7 @@ function gamestart(charID, nBots){
         if(counter < 0){
             counter = eligible_players + counter;
         }
+        playerElim = true;
     }
 }
 
