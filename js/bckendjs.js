@@ -34,7 +34,7 @@ const newdeck = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3";
 
 
 //vars
-let character_models = ['penguin', 'crow', 'turtle', 'random']; // fill this in here
+let character_models = ['penguin', 'squirrel', 'worm', 'pigeon']; // fill this in here
 
 var gameID = 0;
 var gameData = [];
@@ -66,14 +66,14 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
         console.log(body);
 
         let data = JSON.parse(body);
-        deck = data.deckid;
+        deck = data.deck_id;
         console.log(`Deck 1 has been generated with deck id: ${deck}`)
     });
 
     var cards = [];
 
     // initial draw!
-    for(let i = 0; i < nBots+1; i++) {
+    for(let i = 0; i < botNum+1; i++) {
         cards[i] = [];
         let draw = `https://deckofcardsapi.com/api/deck/${deck}/draw/?count=3`;
         request(draw, (error, response, body)=>{
@@ -95,7 +95,7 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
     temp  = character_models.filter(n => !B.includes(n));
     // this code line was taken from Dev.to: https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj#:~:text=The%20first%20and%20simplest%20way,)%20%3D%3E%200.5%20%2D%20Math.
     temp2 = temp.sort((a, b) => 0.5 - Math.random());
-    for(let i = 0; i < nBots; i++){
+    for(let i = 0; i < botNum; i++){
         botModels[i] = temp2[i];
     }
 
