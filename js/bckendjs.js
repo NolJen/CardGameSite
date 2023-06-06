@@ -18,9 +18,11 @@
 
 const request = require("request");
 const express = require('express');
+const cors = require('cors');
 
 // Methods
 const app = express();
+app.use(cors());
 
 //API Keys
 const GPT_KEY = "";
@@ -28,7 +30,7 @@ const Deck_KEY = "";
 const GGlCal_KEY = "AIzaSyA5fjHr2agoW93queC4T9jUYg1ay0FzP7o";
 
 //URL's
-const newndeck = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3";
+const newdeck = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=3";
 
 
 //vars
@@ -48,8 +50,11 @@ app.get('/', (req, res) => {
 
 app.get('/start_game/:charid/:botNum', (req, res) => {
 
-    let charid = req.params.charid;
-    let botNum = req.params.botNum;
+    
+    console.log("Hey the start game function was called!")
+
+    let charid = String(req.params.charid);
+    let botNum = Number(req.params.botNum);
     let botModels = [];
     let deck = "";
     
@@ -58,6 +63,8 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
         if(error) console.log(error)
         console.log(response.statusCode);
         
+        console.log(body);
+
         let data = JSON.parse(body);
         deck = data.deckid;
         console.log(`Deck 1 has been generated with deck id: ${deck}`)

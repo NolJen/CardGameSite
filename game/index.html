@@ -49,7 +49,7 @@
                 <h1 class="tanker" >Game Options</h1>
                 <br>
                 <label for="num_opponets">Choose a number of opponets:</label> 
-                <select name="num_opponets" id="num_opponets"> 
+                <select name="num_opponets" id="num_opponents"> 
                     <option value="1">1</option> 
                     <option value="2">2</option> 
                     <option value="3">3</option> 
@@ -58,7 +58,7 @@
                 <br>
                 <br>
                 <label for="charater_select">Choose a Charater:</label> 
-                <select name="charater_select" id="charater_select"> 
+                <select name="charater_select" id="character_select"> 
                     <option value="penguin">Lady P of the Emperor Penguins</option> 
                     <option value="squirl">Mr Bernie Sander-Squirl</option> 
                     <option value="worm">Sir Willy of the Willy Worms</option> 
@@ -66,8 +66,29 @@
                 </select>
                 <br>
                 <br>
-                <button type="start_game", onclick="gameStart()">Start</button> 
+                <button id="start_game", onclick="gameStart()">Start</button> 
         </div>
-        <script src="../js/bckendjs.js"></script>
+
+        <!--     
+            This is not my code
+            but it is a good refrence for each card
+        -->
+
+        <div class="Card_Hand">
+            <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+                <img id="hand0" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand1" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand2" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand3" hidden="hidden" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand4" hidden="hidden" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand5" hidden="hidden" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand6" hidden="hidden" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand7" hidden="hidden" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand8" hidden="hidden" class="image" src="../images/cardfront.png" draggable="false" />
+                <img id="hand9" hidden="hidden" class="image" src="../images/cardfront.png" draggable="false" />
+            </div>
+        </div>
+        <script src="../js/hand.js"></script>
+        <script src="../js/refrence.js"></script>
     </body>
 </html>

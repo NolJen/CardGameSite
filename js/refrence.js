@@ -1,9 +1,16 @@
 
 
-function gameStart(){
+let gameButton = document.getElementById("start_game");
 
-    const nBots = document.getElementById("num_opponents").selectedValue[0].value;
-    const charID = document.getElementById("character_select").selectedValue[0].value;
+gameButton.onclick = function gameStart(){
+
+    botNum = document.getElementById("num_opponents");
+    character = document.getElementById("character_select");
+
+    const nBots = botNum.options[botNum.selectedIndex].value;
+    const charID = character.options[character.selectedIndex].value;
+
+    console.log(nBots, charID);
 
     let hand = [];
     var gameID = 0;
@@ -11,19 +18,22 @@ function gameStart(){
     var eligible_players = nBots+1;
     var turn_order = 1;
     var playerElim = false;
+    var actions = 0;
     var numActs = 1;
     var numDraw = 1;
     var activeTreaties = [];
     var ActionPool = [["Draw 1 Card", 1], ["Draw 3 Cards", 2], ["Discard 1 Card", 3], ["Discard 2 Cards to Draw 3 Cards", 4], ["Each Player Draws 1 Card", 5], ["Each Player Discards 1 Card", 6]];
     var TreatyPool = [["Draw 1 Additional Card Per Turn", 1], ["You Can Not Go Over 6 Cards", 2], ["You Can’t Speak", 3], ["At The Start of Your Turn You Must Say The Player To Your Rights Name", 4], ["You Can Not Play The Same Type Of Card Twice In a Row", 5], ["You Must Play 2 Cards Per Turn", 6]];
-    var SERURL = 'localhost:3000'; // This should call the new game function with a selected character already chosen!
+    var SERURL = "localhost:3000"; // This should call the new game function with a selected character already chosen!
 
 
     var xReq = new XMLHttpRequest();
     xReq.open("GET", `${SERURL}/start_game/${charID}/${nBots}`);
     xReq.send();
     xReq.onload = function() {
+        console.log("Hey this got called!");
         const body = JSON.parse(xReq.responseText);
+        console.log(xReq.responseText);
 
         gameID = body.gameID;
         data = body.gameInfo;
@@ -85,6 +95,8 @@ function gameStart(){
 }
 
 //for google calls, this might go in a differnt file
+/*
+let GOOGLEURL = "";
 
 var googleReq = new XMLHttpRequest();
 googleReq.open("GET", `${GOOGLEURL}`);
@@ -95,3 +107,4 @@ googleReq.onload = function() {
     
 }
 
+*/
