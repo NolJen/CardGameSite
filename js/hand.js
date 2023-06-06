@@ -1,3 +1,9 @@
+/*--     
+    This is not my code
+    but it is a good refrence for each card
+    refrenced: https://www.youtube.com/watch?v=PkADl0HubMY
+--*/
+
 const track = document.getElementById("image-track");
 
 const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
