@@ -185,21 +185,56 @@ body {
 #image-track > .image {
     border-radius: 5%;
     border: 5px solid #333;
-    width: 40vmin;
+    /*width: 40vmin;
     height: 56vmin;
     max-width: 50%;
     min-width: auto;
-    max-height: 300px;
+    max-height: 300px;*/
     object-fit: cover;
     object-position: 100% center;
 }
-  
-/* -- YouTube Link Styles -- */
-  
-body.menu-toggled > .meta-link > span {
-    color: rgb(30, 30, 30);
-}
+
+/* -- My Code Again -- */
 
 .Card_Hand {
     padding-top: 1000px;
+}
+
+
+
+.other_player_hands {
+    padding-top: 150px;
+    position: relative;
+}
+  
+.top-middle {
+    padding-top: 110px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+  
+.far-left {
+    padding-top: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+  
+.far-right {
+    padding-top: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+  
+
+.deck-middle {
+    text-align: center;
+    padding-top: 300px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
