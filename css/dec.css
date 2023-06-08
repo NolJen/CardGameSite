@@ -207,7 +207,7 @@ body {
     position: relative;
 }
   
-.top-middle {
+.players2 {
     padding-top: 110px;
     position: absolute;
     top: 0;
@@ -215,26 +215,17 @@ body {
     transform: translateX(-50%);
 }
   
-.far-left {
+.players3 {
     padding-top: 300px;
     position: absolute;
     top: 0;
     left: 0;
 }
   
-.far-right {
+.players4 {
     padding-top: 300px;
     position: absolute;
     top: 0;
     right: 0;
 }
-  
 
-.deck-middle {
-    text-align: center;
-    padding-top: 300px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
