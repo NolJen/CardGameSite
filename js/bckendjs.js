@@ -39,73 +39,77 @@ let character_models = ['penguin', 'squirrel', 'worm', 'pigeon']; // fill this i
 var gameID = 0;
 var gameData = [];
 const PORTID = 3000;
+var currentDeck = null;
 
 //Hello world request
 app.get('/', (req, res) => {
     res.send('Ready to receive game start');
     console.log(`Game Ready to be Initialized`);
-
     // possibly include a language conversion???
 });
 
 app.get('/start_game/:charid/:botNum', (req, res) => {
 
-    
-    console.log("Hey the start game function was called!")
 
     let charid = String(req.params.charid);
     let botNum = Number(req.params.botNum);
-    let botModels = [];
-    let deck = "";
+    var botModels = [];
+    var deck = "";
+    var treaty_pile = [];
+    var discard_pile = [];
+    var cards = [];
+    
+    //Vector Read as: numDraw, numAct
+    const initVec = [1, 1];
     
     // Call deck of cards API, initialize a deck or two (three decks)
     request(newdeck, (error, response, body) => {
         if(error) console.log(error)
-        console.log(response.statusCode);
+        console.log(`Deck request: ${response.statusCode}`);
         
-        console.log(body);
-
+        //console.log(body);
         let data = JSON.parse(body);
         deck = data.deck_id;
-        console.log(`Deck 1 has been generated with deck id: ${deck}`)
+
+        // initial draw!
+        for(let i = 0; i < botNum+1; i++) {
+            cards[i] = [];
+            let draw = `https://deckofcardsapi.com/api/deck/${deck}/draw/?count=3`;
+            //console.log(`Requesting a draw request with url: ${draw}`);
+            request(draw, (error, response, body)=>{
+
+                if(error) console.log(error)
+                console.log(`Draw request ${i}, ${response.statusCode}`);
+
+                let data = JSON.parse(body);
+                //console.log(data);
+                for(let x in data.cards){
+                    cards[i].push(data.cards[x].code);
+                }
+                //console.log(cards);
+                if(i == botNum){
+                    
+                    B = [charid];
+                    //This code line was taken from stack overflow: https://stackoverflow.com/questions/45342155/how-to-subtract-one-array-from-another-element-wise-in-javascript
+                    temp  = character_models.filter(n => !B.includes(n));
+                    // this code line was taken from Dev.to: https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj#:~:text=The%20first%20and%20simplest%20way,)%20%3D%3E%200.5%20%2D%20Math.
+                    temp2 = temp.sort((a, b) => 0.5 - Math.random());
+                    for(let i = 0; i < botNum; i++){
+                        botModels[i] = temp2[i];
+                    }
+
+                    console.log(`Just before compilation into string vector: ${cards}`);
+                    gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, treaties: treaty_pile, discard: discard_pile});
+                    gameID = gameData.length-1;
+                    
+                    retString = JSON.stringify({ gameid : gameID, gameInfo: JSON.parse(gameData[gameID])});
+
+                    res.send(retString);
+                    console.log(retString);
+                }
+            });
+        };
     });
-
-    var cards = [];
-
-    // initial draw!
-    for(let i = 0; i < botNum+1; i++) {
-        cards[i] = [];
-        let draw = `https://deckofcardsapi.com/api/deck/${deck}/draw/?count=3`;
-        request(draw, (error, response, body)=>{
-
-            if(error) console.log(error)
-            console.log(response.statusCode);
-            
-            let data = JSON.parse(body);
-            for(let x in data.cards){
-                cards[i].push(x.code);
-            }
-
-        });
-    };
-
-
-    B = [charid];
-    //This code line was taken from stack overflow: https://stackoverflow.com/questions/45342155/how-to-subtract-one-array-from-another-element-wise-in-javascript
-    temp  = character_models.filter(n => !B.includes(n));
-    // this code line was taken from Dev.to: https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj#:~:text=The%20first%20and%20simplest%20way,)%20%3D%3E%200.5%20%2D%20Math.
-    temp2 = temp.sort((a, b) => 0.5 - Math.random());
-    for(let i = 0; i < botNum; i++){
-        botModels[i] = temp2[i];
-    }
-
-    gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, treaties: treaty_pile, discard: discard_pile});
-    gameID = gameData.length-1;
-    
-    retString = JSON.stringify({ gameid : gameID, gameInfo: JSON.parse(gameData[gameID])});
-
-    res.send(retString);
-    console.log(retString);
 });
 
 app.get('/draw_card/:gameid/:num_draw', (req, res) => {
@@ -113,7 +117,7 @@ app.get('/draw_card/:gameid/:num_draw', (req, res) => {
     gameID = req.params.gameid;
     let numDraw = req.params.num_draw;
     
-    let data = JSON.parse(gameData[gameID]);
+    currentDeck = JSON.parse(gameData[gameID]);
 
     const drawcard = `https://deckofcardsapi.com/api/deck/${data.deckid}/draw/?count=${numDraw}`;
 
@@ -124,14 +128,13 @@ app.get('/draw_card/:gameid/:num_draw', (req, res) => {
         
         let newcards = JSON.parse(body);
         for(let x in newcards.cards){
-            data.cards[0].push(x.code);
+            data.hands[0].push(newcards.cards[x].code);
         }
 
+        gameData[gameID] = JSON.stringify(data);
+        res.send(gameData[gameID]);
+        console.log(gameData[gameID]);
     });
-
-    gameData[gameID] = JSON.stringify(data);
-    res.send(gameData[gameID]);
-    console.log(gameData[gameID]);
 });
 
 app.get('/vetos_in_game/:gameid', (req,res) => {
@@ -165,17 +168,23 @@ app.get('/play_card/:gameid/:playerid/:cardid', (req, res) => {
     let cardCode = String(req.params.cardid);
 
     // add card to discard pile if action or veto, add to treaty pile if treaty
-    let data = JSON.parse(gameData[gameID]);
+    currentGame = JSON.parse(gameData[gameID]);
 
 
     treaty = ["A", "2", "3", "4", "5"];
     action = ["6", "7", "8", "9", "0"];
     if(treaty.includes(cardCode.charAt(0))){
         // treaty protocol
+        
+        currentGame.discard_pile.push(cardid);
     }else if(ection.includes(cardCode.charAt(0))){
         // action protocol
+
+        currentGame.discard_pile.push(cardid);
     }else{
         // veto protocol
+
+        currentGame.discard_pile.push(cardid);
     }
 });
 

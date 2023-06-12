@@ -24,7 +24,9 @@ gameButton.onclick = function gameStart(){
     var activeTreaties = [];
     var ActionPool = [["Draw 1 Card", 1], ["Draw 3 Cards", 2], ["Discard 1 Card", 3], ["Discard 2 Cards to Draw 3 Cards", 4], ["Each Player Draws 1 Card", 5], ["Each Player Discards 1 Card", 6]];
     var TreatyPool = [["Draw 1 Additional Card Per Turn", 1], ["You Can Not Go Over 6 Cards", 2], ["You Can’t Speak", 3], ["At The Start of Your Turn You Must Say The Player To Your Rights Name", 4], ["You Can Not Play The Same Type Of Card Twice In a Row", 5], ["You Must Play 2 Cards Per Turn", 6]];
-    var SERURL = "localhost:3000"; // This should call the new game function with a selected character already chosen!
+    
+    
+    var SERURL = "localhost:3000"; // to be updated when hosted on a live website
 
 
     var xReq = new XMLHttpRequest();
