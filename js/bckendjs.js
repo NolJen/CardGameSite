@@ -218,16 +218,4 @@ app.listen(PORTID, function () {
 });
 
 
-function CardConverter(cardid, deckid, handid) {
- 
-    // this function will most likely be placed in a different place in the code, or scrapped entirely due to changes in code.
-
-    // takes card id as given from player, and returns the corresponding
-    // deck of cards card id. A different verison of this function will run backwards. 
-
-}
-
-
-//Functions that run the game need to be added, either here or to the front end file
-
 
