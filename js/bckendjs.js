@@ -66,6 +66,7 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
     request(newdeck, (error, response, body) => {
         if(error) console.log(error)
         console.log(`Deck request: ${response.statusCode}`);
+        counter2 = 0;
         
         //console.log(body);
         let data = JSON.parse(body);
@@ -82,14 +83,14 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
                 console.log(`Draw request ${i}, ${response.statusCode}`);
 
                 let data = JSON.parse(body);
-                //console.log(data);
+                console.log(data);
                 for(let x in data.cards){
                     cards[i].push(data.cards[x].code);
                 }
                 //console.log(cards);
 
                 //After last bot has drawn cards, return to front end is generated
-                if(i == botNum){
+                if(counter2 == botNum){
                     
                     B = [charid];
                     //This code line was taken from stack overflow: https://stackoverflow.com/questions/45342155/how-to-subtract-one-array-from-another-element-wise-in-javascript
@@ -100,7 +101,7 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
                         botModels[i] = temp2[i];
                     }
 
-                    console.log(`Just before compilation into string vector: ${cards}`);
+                    //console.log(`Just before compilation into string vector: ${cards}`);
                     gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, treaties: treaty_pile, discard: discard_pile, stateVec: initVec});
                     gameID = gameData.length-1;
                     
@@ -109,17 +110,19 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
                     res.send(retString);
                     console.log(retString);
                 }
+                counter2 += 1;
             });
         };
     });
 });
 
-app.get('/draw_card/:gameid/:num_draw', (req, res) => {
+app.get('/draw_card/:gameid/:playerid/:num_draw', (req, res) => {
 
-    gameID = req.params.gameid;
-    let numDraw = req.params.num_draw;
+    gameID = Number(req.params.gameid);
+    let playerID = Number(req.params.playerid);
+    let numDraw = Number(req.params.num_draw);
     
-    currentDeck = JSON.parse(gameData[gameID]);
+    data = JSON.parse(gameData[gameID]);
 
     const drawcard = `https://deckofcardsapi.com/api/deck/${data.deckid}/draw/?count=${numDraw}`;
 
@@ -130,7 +133,7 @@ app.get('/draw_card/:gameid/:num_draw', (req, res) => {
         
         let newcards = JSON.parse(body);
         for(let x in newcards.cards){
-            data.hands[0].push(newcards.cards[x].code);
+            data.hands[playerID].push(newcards.cards[x].code);
         }
 
         gameData[gameID] = JSON.stringify(data);
@@ -143,20 +146,20 @@ app.get('/vetos_in_game/:gameid', (req,res) => {
     // is sent a game id, and returns a boolean and what hands have a veto card to play if any. 
     gameID = Number(req.params.gameid);
     let bool = false;
-    let hands = [];
+    let handIdx = [];
 
     let data = JSON.parse(gameData[gameID]);
 
-    for(let x in data.cards){
-        for(y in x){
-            if(y.includes("J") || y.includes("Q") || y.includes("K")){
-                hands.push[data.cards.indexOf(x)]
+    for(let x = 0; x < data.hands.length; x++){
+        for(let y = 0; y < data.hands[x].length; y++){
+            if(data.hands[x][y][0].includes("J") || data.hands[x][y][0].includes("Q") || data.hands[x][y][0].includes("K")){
+                handIdx.push(x);
                 bool = true;
+                break;
             }
-            break;
-        }
+        };
     };
-    retVal = JSON.stringify({isVeto: bool, handIndex: hands});
+    retVal = JSON.stringify({isVeto: bool, handIndex: handIdx});
     res.send(retVal);
     console.log(retVal);
 });

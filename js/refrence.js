@@ -55,6 +55,8 @@ gameButton.onclick = function gameStart(){
         // Action and Draw Phase
         if(counter == 0){
             // draw call to players hand
+            xReq.open("GET", `${SERURL}/draw_card/${counter}/${data.stateVec[0]}`)
+            
             // let player pick cards to play
             let i = data.stateVec[1];
             while(i > 0){
