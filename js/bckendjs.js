@@ -40,6 +40,7 @@ var gameID = 0;
 var gameData = [];
 const PORTID = 3000;
 var currentDeck = null;
+const initVec = [1, 1];
 
 //Hello world request
 app.get('/', (req, res) => {
@@ -60,7 +61,6 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
     var cards = [];
     
     //Vector Read as: numDraw, numAct
-    const initVec = [1, 1];
     
     // Call deck of cards API, initialize a deck or two (three decks)
     request(newdeck, (error, response, body) => {
@@ -87,6 +87,8 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
                     cards[i].push(data.cards[x].code);
                 }
                 //console.log(cards);
+
+                //After last bot has drawn cards, return to front end is generated
                 if(i == botNum){
                     
                     B = [charid];
@@ -99,7 +101,7 @@ app.get('/start_game/:charid/:botNum', (req, res) => {
                     }
 
                     console.log(`Just before compilation into string vector: ${cards}`);
-                    gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, treaties: treaty_pile, discard: discard_pile});
+                    gameData[gameData.length] = JSON.stringify({deckid: deck, hands: cards, bots: botModels, treaties: treaty_pile, discard: discard_pile, stateVec: initVec});
                     gameID = gameData.length-1;
                     
                     retString = JSON.stringify({ gameid : gameID, gameInfo: JSON.parse(gameData[gameID])});
@@ -175,15 +177,12 @@ app.get('/play_card/:gameid/:playerid/:cardid', (req, res) => {
     action = ["6", "7", "8", "9", "0"];
     if(treaty.includes(cardCode.charAt(0))){
         // treaty protocol
-        
-        currentGame.discard_pile.push(cardid);
-    }else if(ection.includes(cardCode.charAt(0))){
+        currentGame.treaty_pile_pile.push(cardid);
+    }else if(action.includes(cardCode.charAt(0))){
         // action protocol
-
         currentGame.discard_pile.push(cardid);
     }else{
         // veto protocol
-
         currentGame.discard_pile.push(cardid);
     }
 });
@@ -200,6 +199,25 @@ app.get('/bots_turn/:gameid/:botid/:success', (req, res) => {
 
 });
 
+
+app.get('/fail_play/:gameid/:playerid/:cardid', (req, res) => {
+    // discard the card 
+});
+
+app.get('/state_change/:gameid/:changeType/:changeVal', (req, res) => {
+    gameID = Number(req.params.gameid);
+    let type = Number(req.params.changeType);
+    let val = Number(req.params.changeVal);
+
+    let data = JSON.parse(gameData[gameID]);
+
+    data.stateVec[type] = data.stateVec[type] + val;
+
+    gameData[gameID] = JSON.stringify(data);
+    res.send(gameData[gameID]);
+    console.log(gameData[gameID]);
+
+});
 
 app.get('/update_map/', (req, res) => {
 

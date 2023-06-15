@@ -2,6 +2,13 @@
 
 let gameButton = document.getElementById("start_game");
 
+let cardSlot = document.getElementsByClassName("cards");
+var counter = 0;
+var cardPlayed = false;
+var xReq = new XMLHttpRequest();
+var currentCard = null;
+var currentCardIdx = null;
+
 gameButton.onclick = function gameStart(){
 
     botNum = document.getElementById("num_opponents");
@@ -14,7 +21,7 @@ gameButton.onclick = function gameStart(){
 
     let hand = [];
     var gameID = 0;
-    data = [];
+    data = null;
     var eligible_players = nBots+1;
     var turn_order = 1;
     var playerElim = false;
@@ -29,7 +36,6 @@ gameButton.onclick = function gameStart(){
     var SERURL = "localhost:3000"; // to be updated when hosted on a live website
 
 
-    var xReq = new XMLHttpRequest();
     xReq.open("GET", `${SERURL}/start_game/${charID}/${nBots}`);
     xReq.send();
     xReq.onload = function() {
@@ -38,42 +44,115 @@ gameButton.onclick = function gameStart(){
         console.log(xReq.responseText);
 
         gameID = body.gameID;
-        data = body.gameInfo;
+        data = JSON.parse(body.gameInfo);
         
 
         // Some code here that starts the game animation / game screen 
         // bring up game stage (you can set display none to open and close tabs within the same window)
     }
-    counter = 0;
     while (eligible_players > 1 && !playerElim) {
 
         // Action and Draw Phase
         if(counter == 0){
             // draw call to players hand
             // let player pick cards to play
-            let i = actions;
+            let i = data.stateVec[1];
             while(i > 0){
+                let passed = false;
+                // wait for player to click on a card, wait for a variable to be true.
+                // cardPlayed = false, until player clicks on a card.
+                while(!cardPlayed){
 
+                }
+                xReq.open("GET", `${SERURL}/vetos_in_game/${gameID}`);
+                xReq.send();
+                xReq.onload = function() {
+                    let temp = JSON.parse(xReq.responseText);
+                    vetoIdx = temp.handIndex;
+
+                    if(vetoIdx.length > 1){
+                        // random number sample to see if bots play veto
+                        // scales with number of bots who have a veto
+
+                        if(randomNum > 1){
+                            passed = true;
+                        }
+
+                    }
+                    else if(vetoIdx.includes(0)){
+                        // card is automatically passed
+
+                        passed = true;
+                    }
+                    else{
+                        // random number sample to see if bots play veto
+
+                        if(randomNum > 1){
+                            passed = true;
+                        }
+                    }
+                }
+
+                // then do veto phase, 
+                    // if no veto is played
+                if(passed){
+                    // play card with success
+
+                    xReq.open("GET", `${SERURL}/play_card/${gameID}/0/${cardCode}`)
+                    xReq.send();
+                    xReq.onload = function() {
+                        let temp = JSON.parse(xReq.responseText)
+                    }  
+
+                    // enforce card effect
+                    let code = cardCode.charAt(0)
+                    treaty = ["A", "2", "3", "4", "5"];
+                    action = ["6", "7", "8", "9", "0"];
+                    if(treaty.includes(code)){
+                        if(code == "A"){
+
+                        }else if(code == "2"){
+                            
+                        }else if(code == "3"){
+                            
+                        }else if(code == "4"){
+                            
+                        }else{
+                            
+                        }
+                    }else if(action.includes(code)){
+                        if(code == "6"){
+
+                        }else if(code == "7"){
+                            
+                        }else if(code == "8"){
+                            
+                        }else if(code == "9"){
+                            
+                        }else{
+                            
+                        }
+                    }
+
+                } else {
+                    // play card with failure
+
+                }
+                cardPlayed = false;
+                i += -1;
             }
 
         } else {
             // draw 
-            // call backend to play bots turn
+            // call bots play function
 
         }
 
-        // Veto Phase
-
-        xReq.open("GET", `${SERURL}/vetos_in_game/${gameID}`);
-        xReq.send();
-        xReq.onload = function() {
-            let temp = JSON.parse(xReq.responseText)
-        }
 
             // all players can play a veto card
             // check if players have a veto, if bot use a random number,  
             // if main player, let them decide. 
-            // the wait period is always there no matter what as to no give up game info
+            // the wait period is always there no matter what as to not give up game info
 
 
         // results phase
@@ -96,17 +175,11 @@ gameButton.onclick = function gameStart(){
     }
 }
 
-//for google calls, this might go in a differnt file
-/*
-let GOOGLEURL = "";
 
-var googleReq = new XMLHttpRequest();
-googleReq.open("GET", `${GOOGLEURL}`);
-googleReq.send();
-googleReq.onload = function() {
-    const body = JSON.parse(googleReq.responseText);
 
-    
+
+cardSlot.onclick = function playCard(cardIdx){
+    card = document.getElementById(`hand${cardIdx}`);
+    cardCode = card.val;
+    cardPlayed = true;
 }
-
-*/
